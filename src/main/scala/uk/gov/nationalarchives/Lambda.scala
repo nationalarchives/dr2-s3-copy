@@ -67,13 +67,13 @@ class Lambda extends RequestStreamHandler {
       credentials: AwsBasicCredentials
   ): IO[CompletedUpload] = for {
     downloadPublisher <- tnaS3Client.download(tnaBucket, inputObject.key)
-    upload <- preservicaS3Client(credentials).upload(
+    completedUpload <- preservicaS3Client(credentials).upload(
       preservicaBucket,
       inputObject.key,
       inputObject.size,
       downloadPublisher
     )
-  } yield upload
+  } yield completedUpload
 
   override def handleRequest(inputStream: InputStream, output: OutputStream, context: Context): Unit = {
     for {
