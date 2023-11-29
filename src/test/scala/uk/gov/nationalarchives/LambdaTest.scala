@@ -62,7 +62,7 @@ class LambdaTest extends AnyFlatSpec with MockitoSugar {
     when(mockSsmClient.getParameter(getParameterCaptor.capture()))
       .thenReturn(CompletableFuture.completedFuture(getParameterResponse))
   }
-  
+
   "handleRequest" should "call the AWS methods with the correct parameters" in {
     TestLambda().handleRequest(new ByteArrayInputStream(validJson.getBytes()), null, null)
     tnaS3BucketCaptor.getValue should equal("tna-bucket")
