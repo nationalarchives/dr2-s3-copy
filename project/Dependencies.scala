@@ -4,7 +4,7 @@ object Dependencies {
   lazy val log4jSlf4j = "org.apache.logging.log4j" % "log4j-slf4j-impl" % logbackVersion
   lazy val log4jCore = "org.apache.logging.log4j" % "log4j-core" % logbackVersion
   lazy val log4jTemplateJson = "org.apache.logging.log4j" % "log4j-layout-template-json" % logbackVersion
-  lazy val lambdaCore = "com.amazonaws" % "aws-lambda-java-core" % "1.2.2"
+  lazy val lambdaCore = "com.amazonaws" % "aws-lambda-java-core" % "1.2.3"
   lazy val scalaTest = "org.scalatest" %% "scalatest" % "3.2.15"
   lazy val s3Client = "uk.gov.nationalarchives" %% "da-s3-client" % "0.1.34"
   lazy val ssm = "software.amazon.awssdk" % "ssm" % "2.20.68"
