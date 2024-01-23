@@ -13,6 +13,8 @@ lazy val root = (project in file(".")).
       log4jCore,
       log4jSlf4j,
       log4jTemplateJson,
+      log4CatsCore,
+      log4CatsSlf4j,
       pureConfig,
       pureConfigCats,
       s3Client,
@@ -32,3 +34,5 @@ scalacOptions ++= Seq("-Wunused:imports", "-Werror")
   case _ => MergeStrategy.first
 }
 
+(Test / fork) := true
+(Test / envVars) := Map("AWS_LAMBDA_FUNCTION_NAME" -> "testfunction")
