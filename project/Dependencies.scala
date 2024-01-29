@@ -16,5 +16,5 @@ object Dependencies {
   lazy val pureConfig = "com.github.pureconfig" %% "pureconfig" % "0.17.4"
   lazy val pureConfigCats = "com.github.pureconfig" %% "pureconfig-cats-effect" % "0.17.4"
   lazy val mockito = "org.mockito" %% "mockito-scala" % "1.17.30"
-  lazy val reactorTest = "io.projectreactor" % "reactor-test" % "3.5.4"
+  lazy val reactorTest = "io.projectreactor" % "reactor-test" % "3.5.14"
 }
