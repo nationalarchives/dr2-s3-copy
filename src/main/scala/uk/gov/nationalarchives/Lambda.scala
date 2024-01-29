@@ -21,12 +21,17 @@ import software.amazon.awssdk.services.ssm.SsmAsyncClient
 import software.amazon.awssdk.services.ssm.model.{GetParameterRequest, GetParameterResponse}
 import software.amazon.awssdk.transfer.s3.model.CompletedUpload
 import uk.gov.nationalarchives.Lambda._
+import org.typelevel.log4cats.{LoggerName, SelfAwareStructuredLogger}
+import org.typelevel.log4cats.slf4j._
 
 import java.io.{InputStream, OutputStream}
 
 class Lambda extends RequestStreamHandler {
 
   val tnaS3Client: DAS3Client[IO] = DAS3Client[IO]()
+
+  implicit val loggerName: LoggerName = LoggerName(sys.env("AWS_LAMBDA_FUNCTION_NAME"))
+  private val logger: SelfAwareStructuredLogger[IO] = Slf4jFactory.create[IO].getLogger
 
   val ssmClient: SsmAsyncClient = SsmAsyncClient
     .builder()
@@ -80,12 +85,19 @@ class Lambda extends RequestStreamHandler {
       config <- ConfigSource.default.loadF[IO, Config]()
       input <- IO.fromEither(decode[Input](inputStream.readAllBytes().map(_.toChar).mkString))
       parameterResponse <- getParameterResponse(config.environment)
+      _ <- logger.info("Retrieved credentials from parameter store")
+
       credentials <- getCredentials(parameterResponse)
-      _ <- input.items
-        .map(item => processInputObject(item, input.tnaBucket, input.preservicaBucket, credentials))
-        .sequence
+      _ <- input.items.map { item =>
+        for {
+          _ <- processInputObject(item, input.tnaBucket, input.preservicaBucket, credentials)
+          _ <- logger.info(s"Copied ${item.key} from ${input.tnaBucket} to ${input.preservicaBucket}")
+        } yield ()
+      }.sequence
     } yield ()
-  }.unsafeRunSync()
+  }.onError(logLambdaError).unsafeRunSync()
+
+  private def logLambdaError(error: Throwable): IO[Unit] = logger.error(error)("Error running s3 copy")
 }
 object Lambda {
   implicit val inputObjectDecoder: Decoder[InputObject] = (c: HCursor) =>
