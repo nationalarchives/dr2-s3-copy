@@ -11,10 +11,10 @@ object Dependencies {
   lazy val lambdaCore = "com.amazonaws" % "aws-lambda-java-core" % "1.2.3"
   lazy val scalaTest = "org.scalatest" %% "scalatest" % "3.2.17"
   lazy val s3Client = "uk.gov.nationalarchives" %% "da-s3-client" % "0.1.35"
-  lazy val ssm = "software.amazon.awssdk" % "ssm" % "2.23.10"
+  lazy val ssm = "software.amazon.awssdk" % "ssm" % "2.23.17"
   lazy val circeParser = "io.circe" %% "circe-parser" % "0.14.6"
   lazy val pureConfig = "com.github.pureconfig" %% "pureconfig" % "0.17.5"
   lazy val pureConfigCats = "com.github.pureconfig" %% "pureconfig-cats-effect" % "0.17.5"
   lazy val mockito = "org.mockito" %% "mockito-scala" % "1.17.30"
-  lazy val reactorTest = "io.projectreactor" % "reactor-test" % "3.5.14"
+  lazy val reactorTest = "io.projectreactor" % "reactor-test" % "3.6.2"
 }
