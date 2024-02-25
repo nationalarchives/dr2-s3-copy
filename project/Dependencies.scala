@@ -13,8 +13,8 @@ object Dependencies {
   lazy val s3Client = "uk.gov.nationalarchives" %% "da-s3-client" % "0.1.36"
   lazy val ssm = "software.amazon.awssdk" % "ssm" % "2.24.8"
   lazy val circeParser = "io.circe" %% "circe-parser" % "0.14.6"
-  lazy val pureConfig = "com.github.pureconfig" %% "pureconfig" % "0.17.5"
-  lazy val pureConfigCats = "com.github.pureconfig" %% "pureconfig-cats-effect" % "0.17.5"
+  lazy val pureConfig = "com.github.pureconfig" %% "pureconfig" % "0.17.6"
+  lazy val pureConfigCats = "com.github.pureconfig" %% "pureconfig-cats-effect" % "0.17.6"
   lazy val mockito = "org.mockito" %% "mockito-scala" % "1.17.30"
   lazy val reactorTest = "io.projectreactor" % "reactor-test" % "3.6.2"
 }
