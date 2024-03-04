@@ -10,7 +10,7 @@ object Dependencies {
   lazy val log4CatsSlf4j = "org.typelevel" %% "log4cats-slf4j" % log4CatsVersion
   lazy val lambdaCore = "com.amazonaws" % "aws-lambda-java-core" % "1.2.3"
   lazy val scalaTest = "org.scalatest" %% "scalatest" % "3.2.18"
-  lazy val s3Client = "uk.gov.nationalarchives" %% "da-s3-client" % "0.1.36"
+  lazy val s3Client = "uk.gov.nationalarchives" %% "da-s3-client" % "0.1.37"
   lazy val ssm = "software.amazon.awssdk" % "ssm" % "2.24.13"
   lazy val circeParser = "io.circe" %% "circe-parser" % "0.14.6"
   lazy val pureConfig = "com.github.pureconfig" %% "pureconfig" % "0.17.6"
